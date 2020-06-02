@@ -1,8 +1,14 @@
-a.exe: util.o slp.o prog.o main.o
-	gcc -g $^
+obj = $(patsubst %.c, %.o, $(wildcard *.c))
+target = chapter1.exe
+
+all: $(obj) $(target)
 
 %.o: %.c
 	gcc -g -c $^
 
+$(target): $(obj)
+	gcc -g $^ -o $@
+
+.PHONY: clean
 clean:
-	rm -f a.exe *.o
+	rm -f $(obj) $(target)
