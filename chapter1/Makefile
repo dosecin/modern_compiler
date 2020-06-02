@@ -3,8 +3,10 @@ target = chapter1.exe
 
 all: $(obj) $(target)
 
+include ../util/util.mk
+
 %.o: %.c
-	gcc -g -c $^
+	gcc -g -c $^ $(CFLAGS)
 
 $(target): $(obj)
 	gcc -g $^ -o $@
