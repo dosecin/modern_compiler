@@ -6,6 +6,7 @@ CFLAGS = -I $(utildir)
 .PHONY: all
 all: util $(obj) $(target)
 
+.PHONY: util
 util:
 	@make -C ../
 
