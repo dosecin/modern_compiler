@@ -4,7 +4,7 @@ utildir ?= ../util
 CFLAGS = -I $(utildir)
 
 .PHONY: all
-all: util $(obj) $(target)
+all: util $(prec) $(obj) $(target)
 
 .PHONY: util
 util:
@@ -13,7 +13,7 @@ util:
 %.o: %.c
 	gcc -g -c $^ $(CFLAGS)
 
-$(target): $(obj) $(utilobj)
+$(target): $(obj) $(utilobj) $(precobj)
 	gcc -o $@ $^ $(CFLAGS)
 
 .PHONY: clean
@@ -22,4 +22,4 @@ clean:
 
 .PHONY: cleanall
 cleanall:
-	rm -f $(obj) $(target) $(utilobj)
+	rm -f $(obj) $(target) $(utilobj) $(precobj)
