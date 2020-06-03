@@ -48,4 +48,7 @@ enum {
     L_OF,
     L_NIL,
     _TOKEN_END,
+
+    L_NEWLINE, // \n
+    L_WHITESPACE,
 };

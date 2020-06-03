@@ -4,22 +4,24 @@
 
 int yylex(void);
 extern FILE *yyin;
+extern int yy_line;
+extern int yy_column;
 
 string toknames[] = {
-    "<unknow>", "while", "for", "to", "break", "let", "in", 
+    "<unknow_token>", "while", "for", "to", "break", "let", "in", 
     "end", "func", "var", "type", "array", "if", "then", 
     "else", "do", "of", "nil",
 };
 
 string symnames[] = {
-    "<unknow>", "<iden>", "<string>", "<int>", "<real>", ",", 
+    "<unknow_symbol>", "<iden>", "<string>", "<int>", "<real>", ",", 
     ":", ";", "(", ")", "[", "]", "{", "}", ".","+", "-", "*", 
     "/", "%", "=", "!=", "<", "<=", ">", ">=", "&", "|", ":=",
 };
 
 string name(int tok) {
     if (tok <= _BEGIN || tok >= _TOKEN_END) {
-        return "BAT_TOKEN";
+        return "BAD_TOKEN";
     }
     if (tok < _TOKEN_BEGIN) {
         return symnames[tok-_BEGIN];
@@ -38,8 +40,9 @@ int main(int argc, char **argv) {
     yyin = fopen(fname, "r");
     while (1) {
         tok = yylex();
-        if(tok == 0) break;
-        printf("%10s\n", name(tok));
+        if (tok == 0) break;
+        if (tok == L_NEWLINE || tok == L_WHITESPACE) continue;
+        printf("line:%d-%d\t%s\n", yy_line, yy_column, name(tok));
     }
     return 0;
 }
