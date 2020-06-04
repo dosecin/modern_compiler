@@ -1,4 +1,5 @@
 %{
+#include <string.h>
 #include "tokens.h"
 
 int yy_line = 1;
@@ -36,7 +37,7 @@ do  {update(); return L_DO;}
 of  {update(); return L_OF;}
 nil {update(); return L_NIL;}
 \n  {yy_line++; yy_column = 1; _yy_column = 1; return L_NEWLINE;}
-[ \t\r]*  {update(); return L_WHITESPACE;}
+[ \t\r\v\f]*  {update(); return L_WHITESPACE;}
 ","   {update(); return L_COMMA;}
 ":"   {update(); return L_COLON;}
 ";"   {update(); return L_SEMI;}

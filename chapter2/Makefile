@@ -6,5 +6,5 @@ include ../common.mk
 
 .PHONY: flex
 flex:
-	flex tiger.lex
+	flex tiger.l
 	gcc -g -c lex.yy.c
