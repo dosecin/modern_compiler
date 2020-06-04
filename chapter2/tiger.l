@@ -62,7 +62,7 @@ nil {update(); return L_NIL;}
 "&" {update(); return L_AND;}
 "|" {update(); return L_OR;}
 ":="    {update(); return L_ASSIGN;}
-[a-zA-z_]+[a-zA-z_0-9]* {update(); return L_IDENT;}
+[a-zA-Z_]+[a-zA-Z_0-9]* {update(); return L_IDENT;}
 [0-9]+  {update(); return L_INT;}
 [0-9]*\.[0-9]+  {update(); return L_REAL;}
 \".*\"  {update(); return L_STRING;}
